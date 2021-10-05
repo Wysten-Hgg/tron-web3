@@ -1,0 +1,10 @@
+{
+    "name": "harriswong/tron-web3",
+    "require": {
+        "php": "^7.0|^8.0",
+        "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "simplito/elliptic-php": "^1.0",
+        "stephenhill/base58": "^1.1",
+        "kornrunner/keccak": "~1.0"
+    }
+}
