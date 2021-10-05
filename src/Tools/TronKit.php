@@ -1,5 +1,5 @@
 <?php
-namespace Web3\tools;
+namespace Web3\Tools;
 
 class TronKit{
   const HAPY_TOKEN = 'TS2Hzo6KpAc8Ym2nGb3idpMtUpM2GiK2gL';

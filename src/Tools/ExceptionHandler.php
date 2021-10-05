@@ -1,5 +1,5 @@
 <?php
-namespace Web3\tools;
+namespace Web3\Tools;
 
 class ExceptionHandler{
   function __construct(){

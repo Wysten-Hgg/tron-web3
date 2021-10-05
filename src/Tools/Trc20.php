@@ -1,5 +1,5 @@
 <?php
-namespace Web3\tools;
+namespace Web3\Tools;
 
 class Trc20 extends Contract{
 
