@@ -46,6 +46,9 @@ class Address{
     }
 
     static function encode($hex){
+        if (substr($hex,0,2) == '0x') {
+            $hex = substr($hex,2);
+        }
         $base58 = new Base58(TRON_ALPHABET);
         $bin = hex2bin($hex);
         $hash0 = hash('sha256',$bin,true);

@@ -42,7 +42,7 @@ class Contract{
 
   function __construct($tronApi,$abi,$credential=null){
 
-    $abi = Utils::jsonToArray($abi, 5);
+      $abi = Utils::jsonToArray($abi, 5)['abi'];
 
     foreach ($abi as $item) {
         if (isset($item['type'])) {
