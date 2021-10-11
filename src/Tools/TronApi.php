@@ -752,5 +752,13 @@ class TronApi{
         $args = func_get_args();
         return $this->exchangeTransaction(...$args);
     }
+
+    function getTransactionSign($transaction,$privateKey){
+        $payload = [
+            'transaction' => $transaction,
+            'privateKey' => $privateKey
+        ];
+        return $this->fullNode->post('/wallet/gettransactionsign',$payload);
+    }
 }
 
