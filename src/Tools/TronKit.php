@@ -51,9 +51,9 @@ class TronKit{
     return new Contract($this->api,$abi,$credential);
   }
 
-  function trc20($address){
+  function trc20($address,$abi){
     $credential = $this->getCredential();
-    $inst = new Trc20($this->api,$credential);
+    $inst = new Trc20($this->api,$abi,$credential);
     return $inst->at($address);
   }
 }
