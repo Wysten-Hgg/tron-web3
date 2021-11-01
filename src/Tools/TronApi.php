@@ -506,10 +506,11 @@ class TronApi{
         return $this->getBrokerage($address,false);
     }
 
-    function voteWitnessAccount($address,$votes){
+    function voteWitnessAccount($address,$voteAddress,$votes){
         $payload = [
             'owner_address' => Address::decode($address),
-            'votes' => $votes
+            'vote_address'=>Address::decode($voteAddress),
+            'vote_count' => $votes
         ];
         return $this->fullNode->post('/wallet/votewitnessaccount',$payload);
     }
