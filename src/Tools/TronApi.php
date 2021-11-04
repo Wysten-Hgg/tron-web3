@@ -563,9 +563,9 @@ class TronApi{
             'fee_limit' => 1000000000
         ];
         if($confirmed){
-            return $this->solidityNode->post('/walletsolidity/triggerconstantsmartcontract',$payload);
+            return $this->solidityNode->post('/walletsolidity/triggerconstantcontract',$payload);
         }else{
-            return $this->fullNode->post('/wallet/triggerconstantsmartcontract',$payload);
+            return $this->fullNode->post('/wallet/triggerconstantcontract',$payload);
         }
     }
 

@@ -43,7 +43,7 @@ class Contract
 
     protected $toAddress;
     protected $bytecode;
-
+    protected $constCall;
     protected $credential;
 
     function __construct($tronApi, $abi, $credential = null)
@@ -97,6 +97,10 @@ class Contract
     function credential($credential)
     {
         $this->credential = $credential;
+        return $this;
+    }
+    function constCall($bool){
+        $this->constCall = $bool;
         return $this;
     }
 
@@ -197,13 +201,24 @@ class Contract
             //var_dump($payload);
             $ret = $this->api->post('/wallet/triggersmartcontract', $payload);
             */
-            $ret = $this->api->triggerSmartContract(
-                $this->toAddress,
-                $functionName,
-                $data,
-                0,
-                $this->credential->address()->base58()
-            );
+            if($this->constCall === false) {
+                $ret = $this->api->triggerSmartContract(
+                    $this->toAddress,
+                    $functionName,
+                    $data,
+                    0,
+                    $this->credential->address()->base58()
+                );
+            }else{
+                $ret = $this->api->triggerConstantSmartContract(
+                    $this->toAddress,
+                    $functionName,
+                    $data,
+                    0,
+                    $this->credential->address()->base58(),
+                    false
+                );
+            }
             //var_dump($ret);
             if ($ret->result->result == false) {
                 throw new Exception('Error build contract transaction.');
@@ -260,13 +275,24 @@ class Contract
             //var_dump($payload);
             $ret = $this->client->post('/wallet/triggersmartcontract', $payload);
             */
-            $ret = $this->api->triggerSmartContract(
-                $this->toAddress,
-                $functionName,
-                $data,
-                0,
-                $this->credential->address()->base58()
-            );
+            if($this->constCall === false) {
+                $ret = $this->api->triggerSmartContract(
+                    $this->toAddress,
+                    $functionName,
+                    $data,
+                    0,
+                    $this->credential->address()->base58()
+                );
+            }else{
+                $ret = $this->api->triggerConstantSmartContract(
+                    $this->toAddress,
+                    $functionName,
+                    $data,
+                    0,
+                    $this->credential->address()->base58(),
+                    false
+                );
+            }
             //var_dump($ret);
             if ($ret->result->result == false) {
                 throw new \Exception('Error build contract transaction.');
