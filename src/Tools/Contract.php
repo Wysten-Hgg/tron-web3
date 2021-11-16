@@ -220,8 +220,8 @@ class Contract
                 );
             }
             //var_dump($ret);
-            if ($ret->result->result == false) {
-                throw new Exception('Error build contract transaction.');
+            if ((isset($ret->result->result) && $ret->result->result == false) || !isset($ret->result->result)) {
+                throw new \Exception('Error build contract transaction.');
             }
             $signedTx = $this->credential->signTx($ret->transaction);
             //var_dump($signedTx);
@@ -293,8 +293,7 @@ class Contract
                     false
                 );
             }
-            //var_dump($ret);
-            if ($ret->result->result == false) {
+            if ((isset($ret->result->result) && $ret->result->result == false) || !isset($ret->result->result)) {
                 throw new \Exception('Error build contract transaction.');
             }
             if (!isset($ret->constant_result[0])) {
