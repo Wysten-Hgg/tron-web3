@@ -294,7 +294,7 @@ class Contract
                 );
             }
             if ((isset($ret->result->result) && $ret->result->result == false) || !isset($ret->result->result)) {
-                throw new \Exception('Error build contract transaction.');
+                return ['status'=>'-1','error'=>$ret->result->code];
             }
             if (!isset($ret->constant_result[0])) {
                 $sign = $this->api->getTransactionSign($ret->transaction, $this->credential->privateKey());
