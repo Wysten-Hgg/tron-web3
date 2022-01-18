@@ -44,6 +44,7 @@ class Contract
     protected $toAddress;
     protected $bytecode;
     protected $constCall;
+    protected $callValue = 0;
     protected $credential;
 
     function __construct($tronApi, $abi, $credential = null)
@@ -103,7 +104,10 @@ class Contract
         $this->constCall = $bool;
         return $this;
     }
-
+    function sendtrx($value){
+        $this->callValue = $value;
+        return $this;
+    }
     public function deploy()
     {
         if (is_null($this->credential)) {
@@ -185,7 +189,7 @@ class Contract
             //var_dump($data,$functionName);
 
             $feeLimit = 1000000000;
-            $callValue = 0;
+            $callValue = $this->callValue;
             $bandwidthLimit = 0;
 
             /*
@@ -206,7 +210,7 @@ class Contract
                     $this->toAddress,
                     $functionName,
                     $data,
-                    0,
+                    $callValue,
                     $this->credential->address()->base58()
                 );
             }else{
@@ -214,7 +218,7 @@ class Contract
                     $this->toAddress,
                     $functionName,
                     $data,
-                    0,
+                    $callValue,
                     $this->credential->address()->base58(),
                     false
                 );
@@ -259,7 +263,7 @@ class Contract
             //var_dump($data,$functionName);
 
             $feeLimit = 1000000000;
-            $callValue = 0;
+            $callValue = $this->callValue;
             $bandwidthLimit = 0;
 
             /*
@@ -280,7 +284,7 @@ class Contract
                     $this->toAddress,
                     $functionName,
                     $data,
-                    0,
+                    $callValue,
                     $this->credential->address()->base58()
                 );
             }else{
@@ -288,7 +292,7 @@ class Contract
                     $this->toAddress,
                     $functionName,
                     $data,
-                    0,
+                    $callValue,
                     $this->credential->address()->base58(),
                     false
                 );
